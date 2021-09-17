@@ -59,9 +59,15 @@ class HomeFragment : Fragment() {
         view.findViewById<Button>(R.id.navigate_destination_button)?.setOnClickListener {
             findNavController().navigate(R.id.flow_step_one_dest, null, options)
         }
-        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_home_dest_to_flow_step_two_dest, null)
-        )
+//        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener {
+//        Navigation.createNavigateOnClickListener(R.id.action_home_dest_to_flow_step_two_dest, null)
+//        }
+
+        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener {
+            val flowStepNumberArg = 1
+            val action = HomeFragmentDirections.actionHomeDestToFlowStepTwoDest(flowStepNumberArg)
+            findNavController().navigate(action)
+        }
         //TODO END STEP 6
 
         //TODO STEP 7.2 - Update the OnClickListener to navigate using an action

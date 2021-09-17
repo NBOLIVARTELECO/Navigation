@@ -19,6 +19,7 @@ package com.example.android.codelabs.navigation
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,7 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
+
         return inflater.inflate(R.layout.home_fragment, container, false)
     }
 
@@ -58,16 +60,20 @@ class HomeFragment : Fragment() {
         }
         view.findViewById<Button>(R.id.navigate_destination_button)?.setOnClickListener {
             findNavController().navigate(R.id.flow_step_one_dest, null, options)
-        }
-//        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener {
-//        Navigation.createNavigateOnClickListener(R.id.action_home_dest_to_flow_step_two_dest, null)
-//        }
 
-        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener {
-            val flowStepNumberArg = 1
-            val action = HomeFragmentDirections.actionHomeDestToFlowStepTwoDest(flowStepNumberArg)
-            findNavController().navigate(action)
         }
+        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener {
+//            Navigation.createNavigateOnClickListener(R.id.next_action, null)
+            findNavController().navigate(R.id.next_action, null, options)
+            Toast.makeText(activity,"Action",Toast.LENGTH_SHORT).show();
+
+        }
+
+//        view.findViewById<Button>(R.id.navigate_action_button)?.setOnClickListener {
+//            val flowStepNumberArg = 1
+//            val action = HomeFragmentDirections.actionHomeDestToFlowStepTwoDest(flowStepNumberArg)
+//            findNavController().navigate(action)
+//        }
         //TODO END STEP 6
 
         //TODO STEP 7.2 - Update the OnClickListener to navigate using an action
